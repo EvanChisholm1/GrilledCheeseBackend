@@ -1,11 +1,12 @@
 import express from "express";
-import { analyzeBiasFromURL } from "./lib/cohere.js";
+import { analyzeFactualnessFromSource } from "./lib/cohere.js";
 const app = express();
 
 app.get("/", async (req, res) => {
-    const publisherBias = await analyzeBiasFromURL(req.query.url);
+    const factualness = await analyzeFactualnessFromSource(req.query.url);
+
     res.json({
-        publisherBias,
+        factualness,
     });
 });
 
