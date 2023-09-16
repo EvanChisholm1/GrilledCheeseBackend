@@ -30,7 +30,7 @@ ${websiteText}
     console.log(json);
 
     console.log(json.generations[0].text);
-    const isNews = json.generations[0].text === "YES";
+    const isNews = json.generations[0].text.includes("YES");
     res.json({
         isNews,
     });
