@@ -2,12 +2,13 @@ import express from "express";
 import cors from "cors";
 import {
     analyzeBiasFromText,
+    analyzeClickbaitFromTitle,
     analyzeFactualnessFromSource,
     cohereApiCall,
     cohereEmbed,
     crossReference,
 } from "./lib/cohere.js";
-import { getText } from "./lib/scraper.js";
+import { getText, getTitle } from "./lib/scraper.js";
 import { readFileSync } from "fs";
 import { knn } from "./lib/knn.js";
 const newsEmbeddings = JSON.parse(readFileSync("./embeddings.json"));
@@ -38,6 +39,8 @@ ${websiteText}
 
 app.get("/", async (req, res) => {
     const websiteText = await getText(req.query.url);
+    const title = await getTitle(req.query.url);
+    console.log(title);
     // console.log(websiteText);
 
     const embedRes = await cohereEmbed([websiteText]);
@@ -60,15 +63,17 @@ app.get("/", async (req, res) => {
     }
 
     // const factualness = await analyzeFactualnessFromSource(req.query.url);
-    const [factualness, textBias] = await Promise.all([
+    const [factualness, textBias, clickbaitAnalysis] = await Promise.all([
         analyzeFactualnessFromSource(req.query.url),
         analyzeBiasFromText(websiteText),
+        analyzeClickbaitFromTitle(title),
     ]);
 
     res.json({
         factualness,
         textBias,
         crossRef,
+        clickbaitAnalysis,
     });
 });
 
