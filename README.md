@@ -1,3 +1,4 @@
-# Credibly Backend
+# Welcome to InCredible Grilled Cheese Sandwich. Your world, credibly. #
+As Ghandi once said, "Newspapers should be read for the study of facts. They should not be allowed to kill the habit of independent thinking."
 
-backend for a website that detects the credibility and bias of a news source.
+What Ghandi could not predict was the modern digital age. People nowadays are bombarded, ovewhelmed, and lacking the time to critically analyze the newspapers of today. Most importantly, without the tools to distinguish fact from fiction, humanity will lose all semblance of truth. Our tool, with the help of our favourite AI company, Cohere, is helping today's society retain critical and independent thought. Our Chrome extension or website help you discover the credibility of the articles you know and love. Receive real-time analysis on the factuality, bias, and clickbait of the article you are reading, and unlock the power of true knowledge. 
